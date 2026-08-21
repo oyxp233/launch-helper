@@ -1,5 +1,5 @@
-# 构建阶段：使用 Node 镜像编译项目
-FROM node:18-alpine AS builder
+# 构建阶段：使用 Node 20 编译项目
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -16,9 +16,6 @@ FROM nginx:alpine
 
 # 复制构建产物到 Nginx 默认目录
 COPY --from=builder /app/dist /usr/share/nginx/html
-
-# 可选：复制自定义 Nginx 配置（如有需要）
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
